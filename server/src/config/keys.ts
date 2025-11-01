@@ -1,4 +1,3 @@
-// We added the new key to the check and the export
 if (
   !process.env.MONGO_URI ||
   !process.env.PORT ||
@@ -7,8 +6,9 @@ if (
   !process.env.GOOGLE_CLIENT_SECRET ||
   !process.env.GITHUB_CLIENT_ID ||
   !process.env.GITHUB_CLIENT_SECRET ||
-  !process.env.UNSPLASH_ACCESS_KEY ||// <-- ADDED THIS CHECK
-  !process.env.CLIENT_URL
+  !process.env.UNSPLASH_ACCESS_KEY ||
+  !process.env.CLIENT_URL ||
+  !process.env.SERVER_URL // <-- 1. ADD THIS CHECK
 ) {
   throw new Error('Missing one or more required environment variables');
 }
@@ -20,5 +20,6 @@ export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 export const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 export const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 export const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
-export const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY; // <-- ADDED THIS
-export const CLIENT_URL = process.env.CLIENT_URL; 
+export const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
+export const CLIENT_URL = process.env.CLIENT_URL;
+export const SERVER_URL = process.env.SERVER_URL; // <-- 2. ADD THIS EXPORT

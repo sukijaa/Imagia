@@ -1,6 +1,5 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy, Profile as GoogleProfile, VerifyCallback as GoogleVerifyCallback } from 'passport-google-oauth20';
-// --- THIS LINE IS UPDATED ---
 import { Strategy as GitHubStrategy, Profile as GitHubProfile } from 'passport-github2';
 import User from '../models/User.model';
 import {
@@ -8,6 +7,7 @@ import {
   GOOGLE_CLIENT_SECRET,
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET,
+  SERVER_URL, // This import is correct
 } from '../config/keys';
 
 // --- Serialize User ---
@@ -31,7 +31,9 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: '/api/auth/google/callback',
+      // --- THIS IS THE FIX ---
+      // You were missing the backticks (`)
+      callbackURL: `${SERVER_URL}/api/auth/google/callback`,
       proxy: true,
     },
     async (accessToken: string, refreshToken: string, profile: GoogleProfile, done: GoogleVerifyCallback) => {
@@ -60,11 +62,12 @@ passport.use(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: '/api/auth/github/callback',
+      // --- THIS IS THE FIX ---
+      // You were missing the backticks (`)
+      callbackURL: `${SERVER_URL}/api/auth/github/callback`,
       proxy: true,
       scope: ['user:email'],
     },
-    // --- THIS LINE IS UPDATED ---
     async (accessToken: string, refreshToken: string, profile: GitHubProfile, done: (err: any, user?: any) => void) => {
       try {
         const existingUser = await User.findOne({ githubId: profile.id });
