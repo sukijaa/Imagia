@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import passport from 'passport';
+import { CLIENT_URL } from '../config/keys'; // <-- Already imported
 
 const router = Router();
 
@@ -17,8 +18,8 @@ router.get(
   '/google/callback',
   passport.authenticate('google'), // Completes the flow
   (req: Request, res: Response) => {
-    // Redirect to the frontend (which we'll build in Part 3)
-    res.redirect('http://localhost:5173');
+    // --- THIS LINE IS UPDATED ---
+    res.redirect(CLIENT_URL); // Redirects to your live Vercel site
   }
 );
 
@@ -36,8 +37,8 @@ router.get(
   '/github/callback',
   passport.authenticate('github'), // Completes the flow
   (req: Request, res: Response) => {
-    // Redirect to the frontend
-    res.redirect('http://localhost:5173');
+    // --- THIS LINE IS UPDATED ---
+    res.redirect(CLIENT_URL); // Redirects to your live Vercel site
   }
 );
 
@@ -53,7 +54,8 @@ router.get('/logout', (req: Request, res: Response) => {
     if (err) {
       return res.status(500).send({ error: 'Logout failed' });
     }
-    res.redirect('http://localhost:5173/login'); // Redirect to the main page
+    // --- THIS LINE IS UPDATED ---
+    res.redirect(`${CLIENT_URL}/login`); // Redirects to the live login page
   });
 });
 

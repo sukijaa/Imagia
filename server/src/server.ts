@@ -14,7 +14,8 @@ import collectionRoutes from './routes/collection.routes'; // <-- ADD THIS
 import cors from 'cors';
 import session from 'express-session'; // --- CHANGED ---
 import passport from 'passport';
-import { PORT, COOKIE_KEY } from './config/keys';
+import { PORT, COOKIE_KEY, CLIENT_URL } from './config/keys';
+
 import connectDB from './db';
 import './services/passport'; 
 import authRoutes from './routes/auth.routes'; 
@@ -28,7 +29,7 @@ connectDB();
 // --- Middlewares (ORDER IS CRITICAL) ---
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Your React app's address
+    origin: CLIENT_URL, // Your React app's address
     credentials: true,
   })
 );

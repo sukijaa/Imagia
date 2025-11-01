@@ -7,7 +7,8 @@ if (
   !process.env.GOOGLE_CLIENT_SECRET ||
   !process.env.GITHUB_CLIENT_ID ||
   !process.env.GITHUB_CLIENT_SECRET ||
-  !process.env.UNSPLASH_ACCESS_KEY // <-- ADDED THIS CHECK
+  !process.env.UNSPLASH_ACCESS_KEY ||// <-- ADDED THIS CHECK
+  !process.env.CLIENT_URL
 ) {
   throw new Error('Missing one or more required environment variables');
 }
@@ -19,4 +20,5 @@ export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 export const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 export const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 export const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
-export const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY; // <-- ADDED THIS EXPORT
+export const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY; // <-- ADDED THIS
+export const CLIENT_URL = process.env.CLIENT_URL; 
