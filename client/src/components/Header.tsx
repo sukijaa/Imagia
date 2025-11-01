@@ -69,7 +69,7 @@ const UserMenu = ({ user }: { user: User }) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           {/* This is a link to our backend logout route */}
-          <a href="http://localhost:8000/api/auth/logout">
+          <a href="/api/auth/logout">
             <Button variant="ghost" className="w-full justify-start h-auto p-0 m-0">
               <LogIn className="w-4 h-4 mr-2" />
               Logout

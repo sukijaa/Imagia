@@ -35,13 +35,13 @@ const LoginPage = () => {
           <p className="text-muted-foreground">Please log in to continue</p>
         </div>
         <div className="space-y-4">
-          <a href="http://localhost:8000/api/auth/google">
+          <a href="/api/auth/google">
             <Button variant="outline" className="w-full">
               <GoogleIcon className="w-5 h-5 mr-2" />
               Sign in with Google
             </Button>
           </a>
-          <a href="http://localhost:8000/api/auth/github">
+          <a href="/api/auth/github">
             <Button variant="outline" className="w-full">
               <Github className="w-5 h-5 mr-2" />
               Sign in with GitHub
