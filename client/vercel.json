@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://imagia-nkf8.onrender.com/api/$1"
+      "destination": "https://imagia-server.onrender.com/api/$1"
     },
     {
       "source": "/((?!api/|assets/).*)",
