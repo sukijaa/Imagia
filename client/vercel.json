@@ -3,15 +3,10 @@
     {
       "source": "/api/(.*)",
       "destination": "https://imagia-nkf8.onrender.com/api/$1"
-    }
-  ],
-  "routes": [
-    {
-      "handle": "filesystem"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
