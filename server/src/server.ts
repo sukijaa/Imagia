@@ -38,17 +38,30 @@ app.use(express.urlencoded({ extended: false }));
 
 // 1. Express Session Middleware --- THIS BLOCK IS NEW ---
 // Replaces cookieSession
+// ... (right after express.urlencoded)
+
+// This tells Express to trust the proxy (like Render)
+app.set('trust proxy', 1); 
+
+// 1. Express Session Middleware
 app.use(
   session({
-    secret: COOKIE_KEY, // Used to sign the session ID cookie
-    resave: false, // Don't save session if unmodified
-    saveUninitialized: false, // Don't create session until something stored
+    secret: COOKIE_KEY, 
+    resave: false, 
+    saveUninitialized: false, 
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-      // secure: true // Enable in production (requires HTTPS)
+
+      // --- THIS IS THE FIX ---
+      // Use secure, cross-site cookies only in production
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     },
   })
 );
+
+// 2. Passport Middleware
+// ... (rest of the file is the same)
 
 // 2. Passport Middleware
 // Initializes Passport and tells it to use the session.
