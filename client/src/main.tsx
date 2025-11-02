@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import axios from 'axios';
 import App from './App.tsx';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -14,7 +15,7 @@ import LoginPage from './pages/LoginPage.tsx';
 import DashboardPage from './pages/DashboardPage.tsx';
 // ... other imports
 import CollectionDetailPage from './pages/CollectionDetailPage.tsx'; // <-- 1. Import new page
-
+axios.defaults.withCredentials = true;
 // Create the router
 // Create the router
 const router = createBrowserRouter([
